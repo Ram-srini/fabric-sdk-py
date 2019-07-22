@@ -1604,7 +1604,8 @@ class Client(object):
                     channel_event_hub.disconnect()
 
         res = decode_proposal_response_payload(res[0].payload)
-        return res['extension']['response']['payload'].decode('utf-8')
+        #return res['extension']['response']['payload'].decode('utf-8')
+        return res['extension']['response']['payload']
 
     async def chaincode_query(self, requestor, channel_name, peers, args,
                               cc_name, cc_type=CC_TYPE_GOLANG,
@@ -1661,7 +1662,8 @@ class Client(object):
         if not all([x.response.status == 200 for x in tran_req.responses]):
             raise Exception(res)
 
-        return res[0].response.payload.decode('utf-8')
+        #return res[0].response.payload.decode('utf-8')
+        return res[0].response.payload
 
     async def query_channels(self, requestor, peers, transient_map=None,
                              decode=True):
